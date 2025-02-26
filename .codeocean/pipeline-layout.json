@@ -1,0 +1,110 @@
+{
+	"edges": [
+		{
+			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_nwb_packaging_subject_capsule_1",
+			"selected": false,
+			"source": "94efcb3a-8853-47f5-b8b8-9f875a139136",
+			"target": "capsule_nwb_packaging_subject_capsule_1"
+		},
+		{
+			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_nwb_packaging_eye_tracking_2",
+			"selected": false,
+			"source": "94efcb3a-8853-47f5-b8b8-9f875a139136",
+			"target": "capsule_nwb_packaging_eye_tracking_2"
+		},
+		{
+			"id": "xy-edge__capsule_nwb_packaging_subject_capsule_1-capsule_nwb_packaging_eye_tracking_2",
+			"selected": false,
+			"source": "capsule_nwb_packaging_subject_capsule_1",
+			"target": "capsule_nwb_packaging_eye_tracking_2"
+		},
+		{
+			"id": "xy-edge__capsule_nwb_packaging_eye_tracking_2-results",
+			"source": "capsule_nwb_packaging_eye_tracking_2",
+			"target": "results"
+		},
+		{
+			"id": "xy-edge__05529cfc-23fe-4ead-9490-71763e9f7c01-capsule_aind_capsule_eye_tracking_3",
+			"selected": false,
+			"source": "05529cfc-23fe-4ead-9490-71763e9f7c01",
+			"target": "capsule_aind_capsule_eye_tracking_3"
+		},
+		{
+			"id": "xy-edge__capsule_aind_capsule_eye_tracking_3-capsule_nwb_packaging_eye_tracking_2",
+			"selected": false,
+			"source": "capsule_aind_capsule_eye_tracking_3",
+			"target": "capsule_nwb_packaging_eye_tracking_2"
+		}
+	],
+	"nodes": [
+		{
+			"data": {
+				"capsule_id": "bdc9f09f-0005-4d09-aaf9-7e82abd93f19"
+			},
+			"id": "capsule_nwb_packaging_subject_capsule_1",
+			"position": {
+				"x": 798.4493508470614,
+				"y": 574.3636747971857
+			},
+			"selected": false,
+			"type": "capsule"
+		},
+		{
+			"id": "results",
+			"position": {
+				"x": 587.2758273920304,
+				"y": 1244.0638599141066
+			},
+			"selected": false,
+			"type": "results"
+		},
+		{
+			"data": {
+				"capsule_id": "8593a5d3-f123-4334-814d-c95bac173591"
+			},
+			"id": "capsule_nwb_packaging_eye_tracking_2",
+			"position": {
+				"x": 408.47018778006213,
+				"y": 804.6620223990246
+			},
+			"selected": true,
+			"type": "capsule"
+		},
+		{
+			"id": "94efcb3a-8853-47f5-b8b8-9f875a139136",
+			"position": {
+				"x": 642.7763302075912,
+				"y": 123.81736835480672
+			},
+			"selected": false,
+			"type": "dataset"
+		},
+		{
+			"data": {
+				"capsule_id": "4cf0be83-2245-4bb1-a55c-a78201b14bfe"
+			},
+			"id": "capsule_aind_capsule_eye_tracking_3",
+			"position": {
+				"x": 163.2251035602818,
+				"y": 263.4636626496307
+			},
+			"selected": false,
+			"type": "capsule"
+		},
+		{
+			"id": "05529cfc-23fe-4ead-9490-71763e9f7c01",
+			"position": {
+				"x": 184.23854909329555,
+				"y": 23.41641525888616
+			},
+			"selected": false,
+			"type": "dataset"
+		}
+	],
+	"timestamp": 1740606734008,
+	"viewport": {
+		"x": 168.5898491663204,
+		"y": 122.47126222183826,
+		"zoom": 0.5197897175876395
+	}
+}
