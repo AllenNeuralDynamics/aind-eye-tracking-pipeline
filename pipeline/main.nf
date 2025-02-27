@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-// hash:sha256:d7377139a769cbb14c4957edfd3d2addf6caa5cb88b52bc44d9bad94afef2250
+// hash:sha256:0bceb9e4fd769fdabe642d332382add2da2b369c02f61f3b2593d0c99385bd52
 
 nextflow.enable.dsl = 1
 
@@ -7,8 +7,9 @@ params.multiplane_ophys_770962_2025_02_25_12_14_00_url = 's3://aind-open-data/mu
 
 multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_subject_capsule_1 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
 capsule_nwb_packaging_subject_capsule_1_to_capsule_nwb_packaging_eye_tracking_2_2 = channel.create()
-capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_3 = channel.create()
-multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_4 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
+multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_3 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
+capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4 = channel.create()
+multiplane_ophys_770962_2025_02_25_12_14_00_to_aind_capsule_eye_tracking_5 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
 
 // capsule - NWB-Packaging-Subject-Capsule
 process capsule_nwb_packaging_subject_capsule_1 {
@@ -64,8 +65,8 @@ process capsule_nwb_packaging_eye_tracking_2 {
 
 	input:
 	path 'capsule/data/nwb/' from capsule_nwb_packaging_subject_capsule_1_to_capsule_nwb_packaging_eye_tracking_2_2.collect()
-	path 'capsule/data/eye_tracking/' from capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_3.collect()
-	path 'capsule/data' from multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_4.collect()
+	path 'capsule/data/multiplane-ophys_' from multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_3.collect()
+	path 'capsule/data/eye_tracking/' from capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4.collect()
 
 	output:
 	path 'capsule/results/*'
@@ -108,8 +109,11 @@ process capsule_aind_capsule_eye_tracking_3 {
 	accelerator 1
 	label 'gpu'
 
+	input:
+	path 'capsule/data' from multiplane_ophys_770962_2025_02_25_12_14_00_to_aind_capsule_eye_tracking_5.collect()
+
 	output:
-	path 'capsule/results/*' into capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_3
+	path 'capsule/results/*' into capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4
 
 	script:
 	"""
@@ -129,6 +133,7 @@ process capsule_aind_capsule_eye_tracking_3 {
 
 	echo "[${task.tag}] cloning git repo..."
 	git clone "https://\$GIT_ACCESS_TOKEN@\$GIT_HOST/capsule-1651093.git" capsule-repo
+	git -C capsule-repo checkout d7ac3d3bbc600f7ba47d62ee856f328e49795ca5 --quiet
 	mv capsule-repo/code capsule/code
 	rm -rf capsule-repo
 

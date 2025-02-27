@@ -48,19 +48,20 @@
 					"collect": true
 				},
 				{
-					"id": "sfNjpIZCljGwTNVX",
-					"source_id": "capsule_aind_capsule_eye_tracking_3",
-					"type": "capsule",
-					"name": "aind-capsule-eye-tracking",
-					"target_path": "eye_tracking",
-					"collect": true
-				},
-				{
 					"id": "6U3RmQgWv8If4Ep2",
 					"source_id": "94efcb3a-8853-47f5-b8b8-9f875a139136",
 					"type": "dataset",
 					"name": "multiplane-ophys_770962_2025-02-25_12-14-00",
 					"source_path": "multiplane-ophys_770962_2025-02-25_12-14-00/",
+					"target_path": "multiplane-ophys_",
+					"collect": true
+				},
+				{
+					"id": "sfNjpIZCljGwTNVX",
+					"source_id": "capsule_aind_capsule_eye_tracking_3",
+					"type": "capsule",
+					"name": "aind-capsule-eye-tracking",
+					"target_path": "eye_tracking",
 					"collect": true
 				}
 			],
@@ -73,7 +74,8 @@
 			"capsule": {
 				"id": "4cf0be83-2245-4bb1-a55c-a78201b14bfe",
 				"name": "aind-capsule-eye-tracking",
-				"slug": "1651093"
+				"slug": "1651093",
+				"commit": "d7ac3d3bbc600f7ba47d62ee856f328e49795ca5"
 			},
 			"resources": {
 				"cpus": 16,
@@ -81,6 +83,14 @@
 				"gpus": 1
 			},
 			"inputs": [
+				{
+					"id": "I4GM3KwYeg5GbI3w",
+					"source_id": "94efcb3a-8853-47f5-b8b8-9f875a139136",
+					"type": "dataset",
+					"name": "multiplane-ophys_770962_2025-02-25_12-14-00",
+					"source_path": "multiplane-ophys_770962_2025-02-25_12-14-00/",
+					"collect": true
+				},
 				{
 					"id": "UMqUktWcGGNyenwO",
 					"source_id": "05529cfc-23fe-4ead-9490-71763e9f7c01",
