@@ -7,38 +7,34 @@
 			"target": "capsule_nwb_packaging_subject_capsule_1"
 		},
 		{
-			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_nwb_packaging_eye_tracking_2",
-			"selected": false,
+			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_copy_of_nwb_packaging_eye_tracking_2",
 			"source": "94efcb3a-8853-47f5-b8b8-9f875a139136",
-			"target": "capsule_nwb_packaging_eye_tracking_2"
+			"target": "capsule_copy_of_nwb_packaging_eye_tracking_2"
 		},
 		{
-			"id": "xy-edge__capsule_nwb_packaging_subject_capsule_1-capsule_nwb_packaging_eye_tracking_2",
-			"selected": false,
+			"id": "xy-edge__capsule_nwb_packaging_subject_capsule_1-capsule_copy_of_nwb_packaging_eye_tracking_2",
 			"source": "capsule_nwb_packaging_subject_capsule_1",
-			"target": "capsule_nwb_packaging_eye_tracking_2"
+			"target": "capsule_copy_of_nwb_packaging_eye_tracking_2"
 		},
 		{
-			"id": "xy-edge__capsule_nwb_packaging_eye_tracking_2-results",
-			"source": "capsule_nwb_packaging_eye_tracking_2",
+			"id": "xy-edge__capsule_copy_of_nwb_packaging_eye_tracking_2-results",
+			"source": "capsule_copy_of_nwb_packaging_eye_tracking_2",
 			"target": "results"
 		},
 		{
-			"id": "xy-edge__05529cfc-23fe-4ead-9490-71763e9f7c01-capsule_aind_capsule_eye_tracking_3",
-			"selected": false,
+			"id": "xy-edge__05529cfc-23fe-4ead-9490-71763e9f7c01-capsule_copy_of_aind_capsule_eye_tracking_3",
 			"source": "05529cfc-23fe-4ead-9490-71763e9f7c01",
-			"target": "capsule_aind_capsule_eye_tracking_3"
+			"target": "capsule_copy_of_aind_capsule_eye_tracking_3"
 		},
 		{
-			"id": "xy-edge__capsule_aind_capsule_eye_tracking_3-capsule_nwb_packaging_eye_tracking_2",
-			"selected": false,
-			"source": "capsule_aind_capsule_eye_tracking_3",
-			"target": "capsule_nwb_packaging_eye_tracking_2"
+			"id": "xy-edge__capsule_copy_of_aind_capsule_eye_tracking_3-capsule_copy_of_nwb_packaging_eye_tracking_2",
+			"source": "capsule_copy_of_aind_capsule_eye_tracking_3",
+			"target": "capsule_copy_of_nwb_packaging_eye_tracking_2"
 		},
 		{
-			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_aind_capsule_eye_tracking_3",
+			"id": "xy-edge__94efcb3a-8853-47f5-b8b8-9f875a139136-capsule_copy_of_aind_capsule_eye_tracking_3",
 			"source": "94efcb3a-8853-47f5-b8b8-9f875a139136",
-			"target": "capsule_aind_capsule_eye_tracking_3"
+			"target": "capsule_copy_of_aind_capsule_eye_tracking_3"
 		}
 	],
 	"nodes": [
@@ -64,18 +60,6 @@
 			"type": "results"
 		},
 		{
-			"data": {
-				"capsule_id": "8593a5d3-f123-4334-814d-c95bac173591"
-			},
-			"id": "capsule_nwb_packaging_eye_tracking_2",
-			"position": {
-				"x": 408.47018778006213,
-				"y": 804.6620223990246
-			},
-			"selected": false,
-			"type": "capsule"
-		},
-		{
 			"id": "94efcb3a-8853-47f5-b8b8-9f875a139136",
 			"position": {
 				"x": 642.7763302075912,
@@ -85,18 +69,6 @@
 			"type": "dataset"
 		},
 		{
-			"data": {
-				"capsule_id": "4cf0be83-2245-4bb1-a55c-a78201b14bfe"
-			},
-			"id": "capsule_aind_capsule_eye_tracking_3",
-			"position": {
-				"x": 230.56002538681594,
-				"y": 380.81881211873315
-			},
-			"selected": true,
-			"type": "capsule"
-		},
-		{
 			"id": "05529cfc-23fe-4ead-9490-71763e9f7c01",
 			"position": {
 				"x": 184.23854909329555,
@@ -104,12 +76,31 @@
 			},
 			"selected": false,
 			"type": "dataset"
+		},
+		{
+			"data": {
+				"capsule_id": "db1debb8-22f5-4922-8213-5fab751bfcc5"
+			},
+			"id": "capsule_copy_of_aind_capsule_eye_tracking_3",
+			"position": {
+				"x": 184.38750756290665,
+				"y": 388.51423175605134
+			},
+			"selected": false,
+			"type": "capsule"
+		},
+		{
+			"data": {
+				"capsule_id": "6776e2e4-70fc-4cb9-8894-504c569a1cd3"
+			},
+			"id": "capsule_copy_of_nwb_packaging_eye_tracking_2",
+			"position": {
+				"x": 408.47018778006213,
+				"y": 804.6620223990246
+			},
+			"selected": true,
+			"type": "capsule"
 		}
 	],
-	"timestamp": 1740609449173,
-	"viewport": {
-		"x": 67.58984916632039,
-		"y": -24.52873777816174,
-		"zoom": 0.5197897175876395
-	}
+	"timestamp": 1740775332757
 }

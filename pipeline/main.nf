@@ -1,15 +1,15 @@
 #!/usr/bin/env nextflow
-// hash:sha256:0bceb9e4fd769fdabe642d332382add2da2b369c02f61f3b2593d0c99385bd52
+// hash:sha256:f13d1ad1345bf9af56f3b80044182209fa38b73b0113912d81a8d3940192c454
 
 nextflow.enable.dsl = 1
 
-params.multiplane_ophys_770962_2025_02_25_12_14_00_url = 's3://aind-open-data/multiplane-ophys_770962_2025-02-25_12-14-00'
+params.ophys_mount_url = 's3://aind-open-data/multiplane-ophys_770962_2025-02-25_12-14-00'
 
-multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_subject_capsule_1 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
-capsule_nwb_packaging_subject_capsule_1_to_capsule_nwb_packaging_eye_tracking_2_2 = channel.create()
-multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_3 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
-capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4 = channel.create()
-multiplane_ophys_770962_2025_02_25_12_14_00_to_aind_capsule_eye_tracking_5 = channel.fromPath(params.multiplane_ophys_770962_2025_02_25_12_14_00_url + "/", type: 'any')
+ophys_mount_to_nwb_packaging_subject_capsule_1 = channel.fromPath(params.ophys_mount_url + "/", type: 'any')
+ophys_mount_to_copy_of_nwb_packaging_eye_tracking_2 = channel.fromPath(params.ophys_mount_url + "/", type: 'any')
+capsule_nwb_packaging_subject_capsule_1_to_capsule_copy_of_nwb_packaging_eye_tracking_2_3 = channel.create()
+capsule_copy_of_aind_capsule_eye_tracking_3_to_capsule_copy_of_nwb_packaging_eye_tracking_2_4 = channel.create()
+ophys_mount_to_copy_of_aind_capsule_eye_tracking_5 = channel.fromPath(params.ophys_mount_url + "/", type: 'any')
 
 // capsule - NWB-Packaging-Subject-Capsule
 process capsule_nwb_packaging_subject_capsule_1 {
@@ -20,10 +20,10 @@ process capsule_nwb_packaging_subject_capsule_1 {
 	memory '8 GB'
 
 	input:
-	path 'capsule/data/ophys_session' from multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_subject_capsule_1.collect()
+	path 'capsule/data/ophys_session' from ophys_mount_to_nwb_packaging_subject_capsule_1.collect()
 
 	output:
-	path 'capsule/results/*' into capsule_nwb_packaging_subject_capsule_1_to_capsule_nwb_packaging_eye_tracking_2_2
+	path 'capsule/results/*' into capsule_nwb_packaging_subject_capsule_1_to_capsule_copy_of_nwb_packaging_eye_tracking_2_3
 
 	script:
 	"""
@@ -53,20 +53,20 @@ process capsule_nwb_packaging_subject_capsule_1 {
 	"""
 }
 
-// capsule - NWB-Packaging-Eye-Tracking
-process capsule_nwb_packaging_eye_tracking_2 {
-	tag 'capsule-8870958'
-	container "$REGISTRY_HOST/published/8593a5d3-f123-4334-814d-c95bac173591:v1"
+// capsule - Copy of NWB-Packaging-Eye-Tracking
+process capsule_copy_of_nwb_packaging_eye_tracking_2 {
+	tag 'capsule-0280622'
+	container "$REGISTRY_HOST/capsule/6776e2e4-70fc-4cb9-8894-504c569a1cd3"
 
-	cpus 1
-	memory '8 GB'
+	cpus 2
+	memory '16 GB'
 
 	publishDir "$RESULTS_PATH", saveAs: { filename -> new File(filename).getName() }
 
 	input:
-	path 'capsule/data/nwb/' from capsule_nwb_packaging_subject_capsule_1_to_capsule_nwb_packaging_eye_tracking_2_2.collect()
-	path 'capsule/data/multiplane-ophys_' from multiplane_ophys_770962_2025_02_25_12_14_00_to_nwb_packaging_eye_tracking_3.collect()
-	path 'capsule/data/eye_tracking/' from capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4.collect()
+	path 'capsule/data' from ophys_mount_to_copy_of_nwb_packaging_eye_tracking_2.collect()
+	path 'capsule/data/nwb/' from capsule_nwb_packaging_subject_capsule_1_to_capsule_copy_of_nwb_packaging_eye_tracking_2_3.collect()
+	path 'capsule/data/eye_tracking/' from capsule_copy_of_aind_capsule_eye_tracking_3_to_capsule_copy_of_nwb_packaging_eye_tracking_2_4.collect()
 
 	output:
 	path 'capsule/results/*'
@@ -76,9 +76,9 @@ process capsule_nwb_packaging_eye_tracking_2 {
 	#!/usr/bin/env bash
 	set -e
 
-	export CO_CAPSULE_ID=8593a5d3-f123-4334-814d-c95bac173591
-	export CO_CPUS=1
-	export CO_MEMORY=8589934592
+	export CO_CAPSULE_ID=6776e2e4-70fc-4cb9-8894-504c569a1cd3
+	export CO_CPUS=2
+	export CO_MEMORY=17179869184
 
 	mkdir -p capsule
 	mkdir -p capsule/data && ln -s \$PWD/capsule/data /data
@@ -86,7 +86,8 @@ process capsule_nwb_packaging_eye_tracking_2 {
 	mkdir -p capsule/scratch && ln -s \$PWD/capsule/scratch /scratch
 
 	echo "[${task.tag}] cloning git repo..."
-	git clone --branch v1.0 "https://\$GIT_ACCESS_TOKEN@\$GIT_HOST/capsule-8870958.git" capsule-repo
+	git clone "https://\$GIT_ACCESS_TOKEN@\$GIT_HOST/capsule-0280622.git" capsule-repo
+	git -C capsule-repo checkout 24b4b86316f7b3c93642ea7c46787fb1eead1462 --quiet
 	mv capsule-repo/code capsule/code
 	rm -rf capsule-repo
 
@@ -99,10 +100,10 @@ process capsule_nwb_packaging_eye_tracking_2 {
 	"""
 }
 
-// capsule - aind-capsule-eye-tracking
-process capsule_aind_capsule_eye_tracking_3 {
-	tag 'capsule-1651093'
-	container "$REGISTRY_HOST/capsule/4cf0be83-2245-4bb1-a55c-a78201b14bfe"
+// capsule - COPY of aind-capsule-eye-tracking
+process capsule_copy_of_aind_capsule_eye_tracking_3 {
+	tag 'capsule-9626122'
+	container "$REGISTRY_HOST/capsule/db1debb8-22f5-4922-8213-5fab751bfcc5"
 
 	cpus 16
 	memory '61 GB'
@@ -110,17 +111,17 @@ process capsule_aind_capsule_eye_tracking_3 {
 	label 'gpu'
 
 	input:
-	path 'capsule/data' from multiplane_ophys_770962_2025_02_25_12_14_00_to_aind_capsule_eye_tracking_5.collect()
+	path 'capsule/data' from ophys_mount_to_copy_of_aind_capsule_eye_tracking_5.collect()
 
 	output:
-	path 'capsule/results/*' into capsule_aind_capsule_eye_tracking_3_to_capsule_nwb_packaging_eye_tracking_2_4
+	path 'capsule/results/*' into capsule_copy_of_aind_capsule_eye_tracking_3_to_capsule_copy_of_nwb_packaging_eye_tracking_2_4
 
 	script:
 	"""
 	#!/usr/bin/env bash
 	set -e
 
-	export CO_CAPSULE_ID=4cf0be83-2245-4bb1-a55c-a78201b14bfe
+	export CO_CAPSULE_ID=db1debb8-22f5-4922-8213-5fab751bfcc5
 	export CO_CPUS=16
 	export CO_MEMORY=65498251264
 
@@ -132,8 +133,8 @@ process capsule_aind_capsule_eye_tracking_3 {
 	ln -s "/tmp/data/universal_eye_tracking-peterl-2019-07-10" "capsule/data/universal_eye_tracking-peterl-2019-07-10" # id: 05529cfc-23fe-4ead-9490-71763e9f7c01
 
 	echo "[${task.tag}] cloning git repo..."
-	git clone "https://\$GIT_ACCESS_TOKEN@\$GIT_HOST/capsule-1651093.git" capsule-repo
-	git -C capsule-repo checkout d7ac3d3bbc600f7ba47d62ee856f328e49795ca5 --quiet
+	git clone "https://\$GIT_ACCESS_TOKEN@\$GIT_HOST/capsule-9626122.git" capsule-repo
+	git -C capsule-repo checkout f27fd5550fdfdc55ac752020eb826aa7d9a6697f --quiet
 	mv capsule-repo/code capsule/code
 	rm -rf capsule-repo
 
