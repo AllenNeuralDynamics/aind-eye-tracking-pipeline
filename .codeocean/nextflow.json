@@ -32,7 +32,8 @@
 				"id": "6776e2e4-70fc-4cb9-8894-504c569a1cd3",
 				"name": "Copy of NWB-Packaging-Eye-Tracking",
 				"slug": "0280622",
-				"commit": "24b4b86316f7b3c93642ea7c46787fb1eead1462"
+				"commit": "24b4b86316f7b3c93642ea7c46787fb1eead1462",
+				"image_tag": "411a947541e561a790fd72d719dc1c8a"
 			},
 			"resources": {
 				"cpus": 2,
@@ -74,7 +75,8 @@
 				"id": "db1debb8-22f5-4922-8213-5fab751bfcc5",
 				"name": "COPY of aind-capsule-eye-tracking",
 				"slug": "9626122",
-				"commit": "f27fd5550fdfdc55ac752020eb826aa7d9a6697f"
+				"commit": "f27fd5550fdfdc55ac752020eb826aa7d9a6697f",
+				"image_tag": "e8b81a2de3e3c4e9381921611bce0331"
 			},
 			"resources": {
 				"cpus": 16,

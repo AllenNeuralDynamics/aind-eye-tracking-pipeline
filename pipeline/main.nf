@@ -1,5 +1,5 @@
 #!/usr/bin/env nextflow
-// hash:sha256:f13d1ad1345bf9af56f3b80044182209fa38b73b0113912d81a8d3940192c454
+// hash:sha256:47931abf87aa15063f2992066c7215664854f3647648d94c07ece05eaad44a8f
 
 nextflow.enable.dsl = 1
 
@@ -56,7 +56,7 @@ process capsule_nwb_packaging_subject_capsule_1 {
 // capsule - Copy of NWB-Packaging-Eye-Tracking
 process capsule_copy_of_nwb_packaging_eye_tracking_2 {
 	tag 'capsule-0280622'
-	container "$REGISTRY_HOST/capsule/6776e2e4-70fc-4cb9-8894-504c569a1cd3"
+	container "$REGISTRY_HOST/capsule/6776e2e4-70fc-4cb9-8894-504c569a1cd3:411a947541e561a790fd72d719dc1c8a"
 
 	cpus 2
 	memory '16 GB'
@@ -103,7 +103,7 @@ process capsule_copy_of_nwb_packaging_eye_tracking_2 {
 // capsule - COPY of aind-capsule-eye-tracking
 process capsule_copy_of_aind_capsule_eye_tracking_3 {
 	tag 'capsule-9626122'
-	container "$REGISTRY_HOST/capsule/db1debb8-22f5-4922-8213-5fab751bfcc5"
+	container "$REGISTRY_HOST/capsule/db1debb8-22f5-4922-8213-5fab751bfcc5:e8b81a2de3e3c4e9381921611bce0331"
 
 	cpus 16
 	memory '61 GB'
